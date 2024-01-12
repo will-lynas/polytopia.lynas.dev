@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>Basic HTMX Example</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<body>
+
+    <p hx-get="/current_time" hx-trigger="every 2s">
+        This content will auto-update every 2 seconds.
+    </p>
+
+</body>
+</html>
