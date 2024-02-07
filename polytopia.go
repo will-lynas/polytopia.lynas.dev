@@ -19,7 +19,7 @@ func polytopiaHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
     if r.Method != http.MethodPost {
-        http.Error(w, "Method is not supported.", http.StatusNotFound)
+        http.Error(w, "Method is not supported.", http.StatusMethodNotAllowed)
         return
     }
     if err := r.ParseForm(); err != nil {
@@ -35,24 +35,24 @@ func polytopiaHandler(w http.ResponseWriter, r *http.Request) {
     numBots := rand.Intn(totalPlayers - numPlayers + 1)
     mapTypes := r.Form["map-types"]
     if len(mapTypes) == 0 {
-        http.Error(w, "No map types selected", http.StatusInternalServerError)
+        http.Error(w, "No map types selected", http.StatusBadRequest)
         return
     }
     mapType := getRandomListElement(mapTypes)
     mapSizes := r.Form["map-sizes"]
     if len(mapSizes) == 0 {
-        http.Error(w, "No map sizes selected", http.StatusInternalServerError)
+        http.Error(w, "No map sizes selected", http.StatusBadRequest)
         return
     }
     mapSize := getRandomListElement(mapSizes)
     tribes := r.Form["tribes"]
     if len(tribes) == 0 {
-        http.Error(w, "No tribes selected", http.StatusInternalServerError)
+        http.Error(w, "No tribes selected", http.StatusBadRequest)
         return
     }
     botDifficulties := r.Form["bot-difficulties"]
     if len(botDifficulties) == 0 {
-        http.Error(w, "No bot difficulty selected", http.StatusInternalServerError)
+        http.Error(w, "No bot difficulty selected", http.StatusBadRequest)
         return
     }
 
