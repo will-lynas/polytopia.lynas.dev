@@ -19,7 +19,7 @@
     </head>
     <body>
 
-        <form hx-post="/generate-game" hx-target="#game-result" hx-swap="innerHTML"
+        <form hx-post hx-target="#game-result" hx-swap="innerHTML"
             hx-trigger="change, load, submit">
             <label for="num-players">Number of Players:</label>
             <select id="num-players" name="num-players" required>
