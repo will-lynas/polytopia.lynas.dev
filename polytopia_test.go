@@ -7,7 +7,7 @@ import (
 )
 
 func TestPolytopiaGetGood(t *testing.T) {
-    req, err := http.NewRequest("GET", "/polytopia", nil)
+    req, err := http.NewRequest("GET", "/", nil)
     if err != nil {
         t.Fatal(err)
     }
@@ -21,7 +21,7 @@ func TestPolytopiaGetGood(t *testing.T) {
 }
 
 func TestPolytopiaBadMethod(t *testing.T) {
-    req, err := http.NewRequest("PUT", "/polytopia", nil)
+    req, err := http.NewRequest("PUT", "/", nil)
     if err != nil {
         t.Fatal(err)
     }

@@ -1,22 +1,37 @@
 package main
 
 import (
+    "crypto/tls"
     "log"
     "net/http"
 )
 
 func main() {
-    staticFiles := http.FileServer(http.Dir("static"))
-    http.Handle("/", staticFiles)
+    staticFiles := http.FileServer(http.Dir("lynas_dev_static"))
+    http.Handle("lynas.dev/", staticFiles)
 
-    http.HandleFunc("/polytopia", polytopiaHandler)
-    http.HandleFunc("/polytopia.html", polytopiaHandler)
+    http.HandleFunc("polytopia.lynas.dev/", polytopiaHandler)
 
     log.Println("Listening ...")
-    err := http.ListenAndServeTLS(":8443",
-    "certs/lynas_dev.crt",
-    "certs/lynas_dev.key", nil)
-    if err != nil {
-        log.Fatal("ListenAndServe: ", err)
+     server := &http.Server{
+        Addr: ":443",
+        TLSConfig: &tls.Config{
+            GetCertificate: func(info *tls.ClientHelloInfo) (*tls.Certificate, error) {
+                var certPath, keyPath string
+                if info.ServerName == "polytopia.lynas.dev" {
+                    certPath = "certs/polytopia_lynas_dev.crt"
+                    keyPath = "certs/polytopia_lynas_dev.key"
+                } else {
+                    certPath = "certs/lynas_dev.crt"
+                    keyPath = "certs/lynas_dev.key"
+                }
+                cert, err := tls.LoadX509KeyPair(certPath, keyPath)
+                if err != nil {
+                    return nil, err
+                }
+                return &cert, nil
+            },
+        },
     }
+    log.Fatal(server.ListenAndServeTLS("", ""))
 }
