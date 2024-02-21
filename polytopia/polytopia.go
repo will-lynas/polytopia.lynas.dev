@@ -1,4 +1,4 @@
-package main
+package polytopia
 
 import (
     "net/http"
@@ -13,13 +13,13 @@ func getRandomListElement(list []string) string {
     return list[rand.Intn(len(list))]
 }
 
-func polytopiaHandler(w http.ResponseWriter, r *http.Request) {
+func PolytopiaHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/" {
-        http.NotFound(w, r)
+        http.FileServer(http.Dir("polytopia/static")).ServeHTTP(w, r)
         return
     }
     if r.Method == http.MethodGet {
-        http.ServeFile(w, r, "polytopia_static/polytopia.html")
+        http.ServeFile(w, r, "polytopia/polytopia.html")
         return
     }
     if r.Method != http.MethodPost {

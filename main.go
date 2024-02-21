@@ -1,16 +1,17 @@
 package main
 
 import (
+    "go-app/polytopia"
     "crypto/tls"
     "log"
     "net/http"
 )
 
 func main() {
-    staticFiles := http.FileServer(http.Dir("lynas_dev_static"))
+    staticFiles := http.FileServer(http.Dir("lynas_dev/static"))
     http.Handle("lynas.dev/", staticFiles)
 
-    http.HandleFunc("polytopia.lynas.dev/", polytopiaHandler)
+    http.HandleFunc("polytopia.lynas.dev/", polytopia.PolytopiaHandler)
 
     log.Println("Listening ...")
      server := &http.Server{
