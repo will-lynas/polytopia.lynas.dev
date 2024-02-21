@@ -14,8 +14,12 @@ func getRandomListElement(list []string) string {
 }
 
 func polytopiaHandler(w http.ResponseWriter, r *http.Request) {
+    if r.URL.Path != "/" {
+        http.NotFound(w, r)
+        return
+    }
     if r.Method == http.MethodGet {
-        http.ServeFile(w, r, "static/polytopia.html")
+        http.ServeFile(w, r, "polytopia_static/polytopia.html")
         return
     }
     if r.Method != http.MethodPost {
