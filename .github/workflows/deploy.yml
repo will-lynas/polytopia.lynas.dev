@@ -17,7 +17,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-          cd ~/lynas.dev
+          cd ~/polytopia.lynas.dev
           git fetch
           git checkout master || true
           git reset --hard origin/master

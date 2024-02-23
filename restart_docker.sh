@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-IMAGE_NAME="lynas_dev_image"
-CONTAINER_NAME="lynas_dev_container"
+IMAGE_NAME="polytopia_lynas_dev_image"
+CONTAINER_NAME="polytopia_lynas_dev_container"
 
 docker stop $CONTAINER_NAME || true
 docker rm $CONTAINER_NAME || true
