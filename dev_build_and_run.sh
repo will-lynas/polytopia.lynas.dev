@@ -1,4 +1,5 @@
+set -e
 echo Building ...
-go build -o go-server
+go build -o go-server ./go
 echo Running ...
 sudo ./go-server

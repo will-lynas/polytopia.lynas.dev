@@ -1,0 +1,9 @@
+{{define "content"}}
+<form hx-post="/generate-game" hx-trigger="submit">
+    <input type="hidden" name="id" value="{{.ID}}">
+    <button>Regenerate</button>
+</form>
+
+<div hx-trigger="every 1s" hx-get="/get-game" hx-vals='{"id": "{{.ID}}"}' hx-swap="innerHTML">
+</div>
+{{end}}

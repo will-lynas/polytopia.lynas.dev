@@ -1,0 +1,18 @@
+<div>Map type: {{.Game.MapType}}</div>
+<div>Map size: {{.Game.MapSize}}</div>
+
+<div>Bots:
+<ul>
+<li>Easy: {{.Game.Bots.Easy}}</li>
+<li>Normal: {{.Game.Bots.Normal}}</li>
+<li>Hard: {{.Game.Bots.Hard}}</li>
+<li>Crazy: {{.Game.Bots.Crazy}}</li>
+</ul>
+</div>
+
+<div>Players:
+<ul>
+{{range .Players}}
+<li>{{.Name}}: {{.Tribe}}</li>
+{{end}}
+</ul>

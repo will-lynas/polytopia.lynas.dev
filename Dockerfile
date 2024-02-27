@@ -9,5 +9,5 @@ COPY . .
 
 EXPOSE 8443
 
-RUN go build -o go-server
+RUN go build -o go-server ./go
 CMD ["./go-server"]

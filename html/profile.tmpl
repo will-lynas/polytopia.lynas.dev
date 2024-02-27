@@ -1,0 +1,10 @@
+{{define "content"}}
+<p>Your name is <span id="name-result">{{.Name}}</span></p>
+<label for="name">Change your name:</label>
+<input type="text" name="name"
+       value="{{.Name}}"
+       hx-post="/change-name"
+       hx-trigger="keyup changed delay:500ms"
+       hx-target="#name-result"
+       hx-swap="innerHtml">
+{{end}}
