@@ -98,7 +98,7 @@ func polytopiaHandler(w http.ResponseWriter, r *http.Request) {
     for i := 0; i < numPlayers; i++ {
         tribe := getRandomListElement(tribes)
         responseContent += fmt.Sprintf(
-            `Player %d: <span class="spoiler">%-16s</span><br>`,
+            `Player %d: <span>%-16s</span><br>`,
             i+1, tribe)
         }
 
